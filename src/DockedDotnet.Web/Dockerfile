@@ -1,11 +1,11 @@
 FROM node:alpine AS build
 
 WORKDIR /src
-COPY package*.json .
+COPY package*.json ./
 RUN npm install
-COPY . .
+COPY . ./
 RUN npm run build
-COPY /_site .
+COPY . ./
 
 FROM nginx:alpine
 WORKDIR /
