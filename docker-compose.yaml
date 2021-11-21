@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  frontend:
+    build: ./src/DockedDotnet.Web/
+    volumes: 
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro   
+    ports:
+      - 4000:4000
+  backend:
+    build: ./src/DockedDotnet.Api/
+    ports:
+      - "5000:5000"
