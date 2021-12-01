@@ -19,13 +19,30 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
   <!-- <link rel="stylesheet" href="css/styles.css?v=1.0"> -->
 
 </head>
 
 <body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="/">home</a></li>
+        <li><a href="/posts/">posts</a></li>
+      </ul>
+    </nav>
+  </header>
   <!-- your content here... -->
-  <div>{{ content }}</div>
+  <div>{{{ content }}}</div>
+  {{#if js}}
+  {{#if reactjs}}
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  {{/if}}
+  <script src="{{js}}"></script>
+  {{/if}}
+  
   <!-- <script src="js/scripts.js"></script> -->
 </body>
 </html>

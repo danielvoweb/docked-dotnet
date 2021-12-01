@@ -5,6 +5,8 @@
 
 # Project-specific
 _site/
+.vscode/launch.json
+.vscode/tasks.json
 
 # User-specific files
 *.rsuser

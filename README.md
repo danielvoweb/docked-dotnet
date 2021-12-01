@@ -26,7 +26,7 @@ A demo docker environment for dotnet-backed web app using a static site and reac
 3. Enough data exists to use the filter feature
 
 ### Logical View: The user's perspective
-1. Scenario 1 / Condition 1
+1. Scenario 1 : Condition 1
 ```
 ┌───────┐     ┌────────────────┐     ┌────────────────┐     ┌────────────────┐
 │ START ├────►│ Display comm.  ├────►│ User clicks    ├────►│ Create form is │
@@ -43,6 +43,24 @@ A demo docker environment for dotnet-backed web app using a static site and reac
 │ a the message  │      │ save btn to    │     └─────┘
 │ text           │      │ a post         │
 └────────────────┘      └────────────────┘
+```
+2. Scenario 1 : Condition 2 & 3
+```
+┌───────┐     ┌────────────────┐     ┌────────────────┐     ┌───────────────┐
+│ START ├────►│ User clicks    ├────►│ Create form is ├────►│ User creates  │
+└───────┘     │ new post btn   │     │ displayed to   │     │ a the message │
+              └────────────────┘     │ the user       │     │ text          │
+                                     └────────────────┘     └─────────────┬─┘
+                                                                          │
+                                                                          │
+ ┌────────────────────────────────────────────────────────────────────────┘
+ │
+ ▼
+┌────────────────┐     ┌─────┐
+│ User presses   ├────►│ END │
+│ save btn to    │     └─────┘
+│ a post         │
+└────────────────┘
 ```
 
 
@@ -75,9 +93,9 @@ A demo docker environment for dotnet-backed web app using a static site and reac
   * [ ] Setup HTTPS with local cert for nginx
   * [ ] Build a static website that has multiple pages and a shared layout 
     * [x] Configure eleventy to build static layouts
-    * [ ] Add a general css framework, i.e. Bulma
+    * [x] Add a general css framework, i.e. Bulma
   * [ ] Build a reactjs component to manage a complex feature that leverages the API
-    * [ ] Configure webpack to build and bundle ReactJS component
+    * [x] Configure webpack to build and bundle ReactJS component
 * [ ] **Backend**
   * [ ] Build a dotnet webapi that supports the ReactJS component
     * [ ] Convert the weather controller to a notes controller 
@@ -96,8 +114,11 @@ A demo docker environment for dotnet-backed web app using a static site and reac
   * [ ] Document playbook
 ## Discovered
 * [ ] **Frontend**
+  * [ ] Design a simple layout for navigation
 * [ ] **Backend**
 * [ ] **Documentation**
+* [ ] **General**
+  * [ ] Select specific versions for images
 
 ## Future Features:
 * Limit the number of characters of a post
