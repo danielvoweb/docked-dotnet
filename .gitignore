@@ -4,6 +4,7 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 # Project-specific
+_database/
 _site/
 .vscode/launch.json
 .vscode/tasks.json

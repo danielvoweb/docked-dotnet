@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MongoDB.Driver;
 
 namespace DockedDotnet.Api
 {
@@ -26,6 +27,10 @@ namespace DockedDotnet.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var databaseSettings = Configuration.GetSection("DockedDotnetDatabaseSettings").Get<DatabaseSettings>();
+            var mongoDbClient = new MongoClient(databaseSettings.ConnectionString);
+            var database = mongoDbClient.GetDatabase(databaseSettings.DatabaseName);
+            services
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
