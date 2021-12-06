@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,8 +26,8 @@ namespace DockedDotnet.Api
             var database = mongoDbClient.GetDatabase(databaseSettings.DatabaseName);
             services.AddSingleton(database);
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-
             services.AddControllers();
+            services.AddCors();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DockedDotnet.Api", Version = "v1" });
@@ -38,6 +39,10 @@ namespace DockedDotnet.Api
         {
             if (env.IsDevelopment())
             {
+                app.UseCors(c => c
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod());
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DockedDotnet.Api v1"));

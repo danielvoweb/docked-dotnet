@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DockedDotnet.Api.Models;
@@ -8,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace DockedDotnet.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class PostsController : ControllerBase
     {
         private readonly ILogger<PostsController> _logger;
@@ -27,10 +26,16 @@ namespace DockedDotnet.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<Post> Post(Post post)
+        public async Task<Post> Post([FromBody] Post post)
         {
             var createdPost = _postsRepository.Create(post);
             return await createdPost;
+        }
+
+        [HttpDelete]
+        public async Task Delete(string id)
+        {
+            await _postsRepository.Remove(x => x.Id == id);
         }
     }
 }
