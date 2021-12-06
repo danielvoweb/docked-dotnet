@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using DockedDotnet.Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,24 +12,25 @@ namespace DockedDotnet.Api.Controllers
     public class PostsController : ControllerBase
     {
         private readonly ILogger<PostsController> _logger;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IRepository<Post> _postsRepository;
 
         public PostsController(ILogger<PostsController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
-            _unitOfWork = unitOfWork;
+            _postsRepository = unitOfWork.PostsRepository;
         }
 
         [HttpGet]
-        public IEnumerable<Post> Get()
+        public async Task<IEnumerable<Post>> Get()
         {
-            throw new NotImplementedException();
+            return await _postsRepository.Get();
         }
 
         [HttpPost]
-        public Post Post(Post post)
+        public async Task<Post> Post(Post post)
         {
-            throw new NotImplementedException();
+            var createdPost = _postsRepository.Create(post);
+            return await createdPost;
         }
     }
 }

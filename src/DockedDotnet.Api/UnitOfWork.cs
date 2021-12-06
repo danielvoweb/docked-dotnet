@@ -5,10 +5,10 @@ namespace DockedDotnet.Api
 {
     public interface IUnitOfWork
     {
-        IRepository<Post> PostsRepository { get; set; }
+        IRepository<Post> PostsRepository { get; }
     }
     
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         public UnitOfWork(IMongoDatabase database)
         {
